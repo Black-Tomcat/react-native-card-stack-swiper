@@ -33,6 +33,11 @@ class CardStack extends Component {
       cards: [],
       touchStart: 0,
     };
+    
+    if (this.props.onDrag) {
+      this.state.drag.addListener(this.props.onDrag);
+    }
+    
     this.distance = this.constructor.distance;
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponder: (evt, gestureState) => false,
@@ -414,7 +419,9 @@ class CardStack extends Component {
               { translateX: (topCard === 'cardB') ? drag.x : 0 },
               { translateY: (topCard === 'cardB') ? drag.y : 0 },
               { scale: (topCard === 'cardB') ? 1 : scale },
-            ]
+            ],
+            width: "100%",
+            height: "100%"
           }}>
           {cardB}
         </Animated.View>
@@ -433,7 +440,9 @@ class CardStack extends Component {
               { translateX: (topCard === 'cardA') ? drag.x : 0 },
               { translateY: (topCard === 'cardA') ? drag.y : 0 },
               { scale: (topCard === 'cardA') ? 1 : scale },
-            ]
+            ],
+            width: "100%",
+            height: "100%"
           }}>
           {cardA}
         </Animated.View>
